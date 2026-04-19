@@ -3,26 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohamed Abubakkar Siddik — Security Researcher</title>
+<title>Mohamed Abubakkar Siddik — Offensive Security Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --red:      #e8291c;
-  --red-soft: rgba(232,41,28,0.08);
-  --red-mid:  rgba(232,41,28,0.18);
+  --red:      #e3352a;
+  --red-dark: #b11f16;
+  --red-soft: rgba(227,53,42,0.08);
+  --red-mid:  rgba(227,53,42,0.12);
   --bg:       #0a0a0b;
   --s1:       #111114;
   --s2:       #18181c;
   --line:     rgba(255,255,255,0.06);
   --line2:    rgba(255,255,255,0.10);
-  --text:     #e2e2e5;
-  --muted:    #6c6c76;
-  --muted2:   #38383f;
+  --text:     #e8e8ec;
+  --muted:    #7a7a85;
+  --muted2:   #3a3a42;
   --display:  'Syne', sans-serif;
   --body:     'DM Sans', sans-serif;
+  --mono:     'Share Tech Mono', monospace;
 }
 
 html { scroll-behavior: smooth; }
@@ -35,14 +37,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* SUBTLE GRID */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(rgba(227,53,42,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(227,53,42,0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   height: 60px;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 60px;
-  background: rgba(10,10,11,0.88);
-  backdrop-filter: blur(24px);
+  background: rgba(10,10,11,0.92);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--line);
 }
 .nav-logo {
@@ -58,7 +74,7 @@ nav {
   color: var(--muted); text-decoration: none;
   transition: color 0.18s;
 }
-.nav-links a:hover { color: var(--text); }
+.nav-links a:hover { color: var(--red); }
 .nav-pill {
   display: flex; align-items: center; gap: 7px;
   font-size: 12px; font-weight: 500; color: #2ecc71;
@@ -70,14 +86,14 @@ nav {
 @keyframes breathe { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
 /* LAYOUT */
-.wrap { max-width: 1060px; margin: 0 auto; padding: 0 60px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 60px; position: relative; z-index: 2; }
 
 /* HERO */
 .hero {
   min-height: 100vh;
   display: flex; flex-direction: column; justify-content: center;
   padding: 120px 0 80px;
-  position: relative; overflow: hidden;
+  position: relative;
 }
 .hero-ghost {
   position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
@@ -85,17 +101,18 @@ nav {
   font-size: min(36vw, 480px);
   line-height: 1; letter-spacing: -0.05em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(232,41,28,0.05);
+  -webkit-text-stroke: 1px rgba(227,53,42,0.04);
   user-select: none; pointer-events: none;
 }
 .eyebrow {
   display: flex; align-items: center; gap: 12px;
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase;
+  font-family: var(--mono);
+  font-size: 11px; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--red); margin-bottom: 24px;
   opacity: 0; animation: up .65s ease forwards .1s;
 }
-.eyebrow-bar { width: 24px; height: 1.5px; background: var(--red); }
+.eyebrow-bar { width: 32px; height: 1.5px; background: var(--red); }
 h1 {
   font-family: var(--display);
   font-weight: 800;
@@ -107,57 +124,82 @@ h1 {
   opacity: 0; animation: up .65s ease forwards .25s;
 }
 h1 .r { color: var(--red); }
+
 .hero-lead {
-  font-size: clamp(15px,1.8vw,18px); font-weight: 300;
-  color: var(--muted); max-width: 480px;
-  line-height: 1.78; margin-bottom: 44px;
+  font-size: 17px; font-weight: 350;
+  color: var(--muted); max-width: 560px;
+  line-height: 1.7; margin-bottom: 28px;
   opacity: 0; animation: up .65s ease forwards .4s;
 }
-.hero-lead b { color: var(--text); font-weight: 500; }
+.hero-lead b { color: var(--text); font-weight: 550; }
+
+.hero-code {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--red);
+  letter-spacing: 0.08em;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: up .65s ease forwards .48s;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hero-code span {
+  color: var(--muted2);
+}
+.hero-code::before {
+  content: '$';
+  color: var(--red);
+  font-size: 12px;
+}
+
 .stats {
   display: flex; width: fit-content;
   border: 1px solid var(--line2);
+  background: var(--s1);
   margin-bottom: 48px;
   opacity: 0; animation: up .65s ease forwards .55s;
 }
-.stat { padding: 18px 30px; border-right: 1px solid var(--line2); }
+.stat { padding: 18px 32px; border-right: 1px solid var(--line2); }
 .stat:last-child { border-right: none; }
 .stat-v {
-  font-family: var(--display); font-size: 21px; font-weight: 700;
-  color: #fff; margin-bottom: 2px;
+  font-family: var(--display); font-size: 22px; font-weight: 800;
+  color: #fff; margin-bottom: 4px;
 }
 .stat-v span { color: var(--red); }
-.stat-l { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.stat-l { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted2); }
+
 .actions {
-  display: flex; align-items: center; gap: 14px;
+  display: flex; align-items: center; gap: 16px;
   opacity: 0; animation: up .65s ease forwards .7s;
 }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   text-decoration: none; cursor: pointer; border: none;
-  font-family: var(--display); font-size: 13px; font-weight: 700;
-  letter-spacing: .04em; padding: 13px 26px;
-  transition: all .2s;
+  font-family: var(--display); font-size: 12px; font-weight: 700;
+  letter-spacing: .08em; padding: 13px 28px;
+  transition: all .22s;
 }
 .btn-p {
   background: var(--red); color: #fff;
   clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
 }
-.btn-p:hover { background: #f03322; box-shadow: 0 6px 28px rgba(232,41,28,.28); }
+.btn-p:hover { background: #c42b20; box-shadow: 0 8px 28px rgba(227,53,42,.25); transform: translateY(-1px); }
 .btn-g {
   background: transparent; color: var(--muted);
   border: 1px solid var(--line2);
 }
-.btn-g:hover { color: var(--text); border-color: rgba(255,255,255,.18); }
+.btn-g:hover { color: var(--red); border-color: var(--red); }
 
-/* SECTION */
 section { padding: 96px 0; }
 .divider { height: 1px; background: var(--line); }
 .sh { margin-bottom: 52px; }
 .snum {
-  display: block; font-size: 11px; font-weight: 600;
-  letter-spacing: .2em; text-transform: uppercase;
-  color: var(--red); margin-bottom: 10px;
+  display: block; font-family: var(--mono);
+  font-size: 10px; font-weight: 400;
+  letter-spacing: .25em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 12px;
 }
 h2 {
   font-family: var(--display);
@@ -165,7 +207,6 @@ h2 {
   letter-spacing: -.02em; color: #fff;
 }
 
-/* SKILLS */
 .skills-grid {
   display: grid; grid-template-columns: repeat(4,1fr);
   gap: 1px; background: var(--line2);
@@ -173,7 +214,7 @@ h2 {
 }
 .sk {
   background: var(--s1); padding: 30px 26px 34px;
-  position: relative; overflow: hidden; transition: background .22s;
+  position: relative; transition: background .22s;
 }
 .sk:hover { background: var(--s2); }
 .sk::after {
@@ -199,21 +240,21 @@ h2 {
   transition: color .18s;
 }
 .sk-list li::before {
-  content: ''; width: 4px; height: 4px; border-radius: 50%;
-  background: var(--muted2); flex-shrink: 0; transition: background .18s;
+  content: '›';
+  color: var(--red);
+  font-size: 14px;
+  font-weight: 700;
 }
 .sk:hover .sk-list li { color: var(--text); }
-.sk:hover .sk-list li::before { background: var(--red); }
 
-/* EXPERIENCE */
 .exp {
   border: 1px solid var(--line2); background: var(--s1);
-  display: grid; grid-template-columns: 250px 1fr;
+  display: grid; grid-template-columns: 260px 1fr;
   overflow: hidden; position: relative;
 }
 .exp::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1.5px;
-  background: linear-gradient(90deg, var(--red) 0%, rgba(232,41,28,.2) 50%, transparent 100%);
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--red) 0%, rgba(227,53,42,.2) 60%, transparent);
 }
 .exp-side {
   padding: 36px 28px; border-right: 1px solid var(--line);
@@ -226,8 +267,8 @@ h2 {
 }
 .exp-tag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--red); }
 .exp-co {
-  font-family: var(--display); font-size: 19px; font-weight: 800;
-  letter-spacing: -.01em; color: #fff; line-height: 1.2; margin-bottom: 6px;
+  font-family: var(--display); font-size: 20px; font-weight: 800;
+  letter-spacing: -.01em; color: #fff; line-height: 1.2; margin-bottom: 8px;
 }
 .exp-pos { font-size: 13px; color: var(--muted); margin-bottom: auto; padding-bottom: 24px; }
 .exp-meta {
@@ -239,38 +280,52 @@ h2 {
 .exp-body { padding: 36px 40px; }
 .exp-ul { list-style: none; display: flex; flex-direction: column; gap: 18px; }
 .exp-ul li {
-  font-size: 14px; font-weight: 300; color: var(--muted);
+  font-size: 14px; font-weight: 350; color: var(--muted);
   padding-left: 20px; position: relative;
-  border-left: 1px solid var(--line); line-height: 1.65;
-  transition: border-color .2s, color .2s;
+  line-height: 1.65;
+  transition: color .2s;
 }
-.exp-ul li:hover { border-color: var(--red); color: var(--text); }
+.exp-ul li::before {
+  content: '//';
+  position: absolute; left: 0;
+  color: var(--red-dark);
+  font-family: var(--mono);
+  font-size: 11px;
+  top: 2px;
+}
+.exp-ul li:hover { color: var(--text); }
 
-/* P1 */
 .p1 {
   background: var(--s1); border: 1px solid var(--line2);
   position: relative; overflow: hidden;
 }
 .p1::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1.5px;
-  background: linear-gradient(90deg, var(--red), rgba(232,41,28,.25), transparent);
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--red), rgba(227,53,42,.25), transparent);
 }
 .p1-watermark {
   position: absolute; right: 28px; bottom: -12px;
   font-family: var(--display); font-weight: 800;
   font-size: 110px; line-height: 1; color: transparent;
-  -webkit-text-stroke: 1px rgba(232,41,28,.07);
+  -webkit-text-stroke: 1px rgba(227,53,42,.06);
   user-select: none; pointer-events: none;
 }
 .p1-header {
   padding: 28px 40px; border-bottom: 1px solid var(--line);
   display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 .p1-tag {
-  font-family: var(--display); font-size: 12px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: #fff; background: var(--red); padding: 5px 14px;
+  font-family: var(--display); font-size: 12px; font-weight: 800;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: #fff; background: var(--red); padding: 5px 16px;
   clip-path: polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));
+  animation: pulseRed 3s ease-in-out infinite;
+}
+@keyframes pulseRed {
+  0%, 80%, 100% { box-shadow: 0 0 0 0 rgba(227,53,42,0); }
+  90% { box-shadow: 0 0 12px rgba(227,53,42,0.5); }
 }
 .p1-source { font-size: 12px; font-weight: 500; color: var(--muted); }
 .p1-ok {
@@ -280,24 +335,53 @@ h2 {
 .p1-ok::before { content: '✓'; font-weight: 700; }
 .p1-inner {
   padding: 36px 40px;
-  display: grid; grid-template-columns: 1fr 300px; gap: 56px;
+  display: grid; grid-template-columns: 1fr 280px; gap: 48px;
 }
 .p1-title {
   font-family: var(--display); font-size: 24px; font-weight: 800;
-  letter-spacing: -.02em; color: #fff; line-height: 1.2; margin-bottom: 14px;
+  letter-spacing: -.02em; color: #fff; line-height: 1.2; margin-bottom: 16px;
 }
 .p1-desc {
-  font-size: 14px; font-weight: 300; color: var(--muted);
-  line-height: 1.78; margin-bottom: 28px; max-width: 500px;
+  font-size: 14px; font-weight: 350; color: var(--muted);
+  line-height: 1.78; margin-bottom: 24px; max-width: 540px;
 }
-.chain { display: flex; align-items: center; flex-wrap: wrap; gap: 0; }
-.cn {
-  font-size: 11px; font-weight: 500; letter-spacing: .05em;
-  color: var(--text); background: var(--s2);
-  border: 1px solid var(--line2); padding: 6px 12px;
+.attack-chain {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  background: var(--s2);
+  border: 1px solid var(--line);
+  padding: 12px 20px;
+  border-radius: 6px;
+  width: fit-content;
+  margin-bottom: 24px;
 }
-.cn.active { border-color: var(--red); color: var(--red); }
-.ca { color: var(--red); font-size: 12px; padding: 0 5px; }
+.chain-step {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  padding: 5px 12px;
+  background: var(--bg);
+  border: 1px solid var(--line2);
+  border-radius: 3px;
+}
+.chain-step.active {
+  border-color: var(--red);
+  color: var(--red);
+  background: rgba(227,53,42,0.08);
+}
+.chain-arrow {
+  color: var(--red);
+  font-size: 12px;
+  padding: 0 6px;
+  font-weight: 700;
+}
+.p1-proof {
+  margin-top: 8px;
+}
 .facts { display: flex; flex-direction: column; gap: 0; }
 .fact {
   padding: 16px 0; border-bottom: 1px solid var(--line);
@@ -305,21 +389,26 @@ h2 {
 .fact:last-child { border-bottom: none; padding-bottom: 0; }
 .fact:first-child { padding-top: 0; }
 .fk {
-  font-size: 10px; font-weight: 600; letter-spacing: .15em;
+  font-family: var(--mono);
+  font-size: 9px; font-weight: 400; letter-spacing: .12em;
   text-transform: uppercase; color: var(--red); margin-bottom: 4px;
 }
-.fv { font-size: 13px; color: var(--text); line-height: 1.5; }
+.fv { font-size: 12px; color: var(--text); line-height: 1.5; }
 
-/* PROJECTS */
 .proj-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 1px; background: var(--line2);
   border: 1px solid var(--line2);
 }
+.project-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
 .pc {
   background: var(--s1); padding: 32px 28px;
   position: relative; overflow: hidden;
-  transition: background .22s; cursor: default;
+  transition: background .22s; cursor: pointer;
 }
 .pc:hover { background: var(--s2); }
 .pc::before {
@@ -330,7 +419,7 @@ h2 {
   color: transparent; -webkit-text-stroke: 1px var(--muted2);
   transition: -webkit-text-stroke-color .22s;
 }
-.pc:hover::before { -webkit-text-stroke-color: rgba(232,41,28,.15); }
+.pc:hover::before { -webkit-text-stroke-color: rgba(227,53,42,.2); }
 .pc::after {
   content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
   background: var(--red); transform: scaleX(0); transform-origin: left;
@@ -342,27 +431,27 @@ h2 {
   letter-spacing: -.01em; color: #fff; margin-bottom: 8px; max-width: 260px;
 }
 .pd {
-  font-size: 13px; font-weight: 300; color: var(--muted);
+  font-size: 13px; font-weight: 350; color: var(--muted);
   line-height: 1.65; margin-bottom: 20px; max-width: 300px;
 }
 .ptags { display: flex; gap: 6px; flex-wrap: wrap; }
 .ptag {
-  font-size: 11px; font-weight: 500; letter-spacing: .04em;
+  font-family: var(--mono);
+  font-size: 9px; font-weight: 400; letter-spacing: .05em;
   color: var(--muted); background: var(--s2);
   border: 1px solid var(--line); padding: 3px 10px; border-radius: 3px;
   transition: all .18s;
 }
 .pc:hover .ptag { border-color: var(--red-mid); color: var(--text); }
 
-/* CONTACT */
 .ct {
   background: var(--s1); border: 1px solid var(--line2);
   display: grid; grid-template-columns: 1fr 1fr;
   overflow: hidden; position: relative;
 }
 .ct::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1.5px;
-  background: linear-gradient(90deg, var(--red), rgba(232,41,28,.2), transparent);
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--red), rgba(227,53,42,.2), transparent);
 }
 .ct-l { padding: 52px 48px; border-right: 1px solid var(--line); }
 .ct-h {
@@ -371,13 +460,13 @@ h2 {
 }
 .ct-h span { color: var(--red); }
 .ct-sub {
-  font-size: 14px; font-weight: 300; color: var(--muted);
+  font-size: 14px; font-weight: 350; color: var(--muted);
   line-height: 1.75; margin-bottom: 32px;
 }
-.ct-r { padding: 52px 48px; display: flex; flex-direction: column; }
+.ct-r { padding: 52px 48px; display: flex; flex-direction: column; gap: 8px; }
 .clink {
   display: flex; align-items: center; gap: 14px;
-  text-decoration: none; padding: 16px 0;
+  text-decoration: none; padding: 14px 0;
   border-bottom: 1px solid var(--line); transition: all .2s;
 }
 .clink:first-child { padding-top: 0; }
@@ -392,33 +481,34 @@ h2 {
 }
 .cl-info { flex: 1; }
 .cl-plat {
-  font-size: 10px; font-weight: 600; letter-spacing: .12em;
+  font-family: var(--mono);
+  font-size: 9px; font-weight: 400; letter-spacing: .12em;
   text-transform: uppercase; color: var(--red); margin-bottom: 2px;
 }
 .cl-label { font-size: 13px; color: var(--muted); transition: color .2s; }
 .cl-arrow { color: var(--muted2); font-size: 15px; transition: all .2s; }
 
-/* FOOTER */
 .foot {
   padding: 26px 60px;
   border-top: 1px solid var(--line);
   display: flex; justify-content: space-between; align-items: center;
-  max-width: 1060px; margin: 0 auto;
+  max-width: 1120px; margin: 0 auto;
 }
-.foot-l { font-size: 12px; color: var(--muted); }
-.foot-l b { color: var(--text); font-weight: 500; }
-.foot-r { font-size: 12px; color: var(--muted2); }
+.foot-l { font-size: 11px; font-family: var(--mono); color: var(--muted2); letter-spacing: .05em; }
+.foot-l b { color: var(--muted); font-weight: 400; }
+.foot-r { font-family: var(--mono); font-size: 10px; color: var(--red); letter-spacing: .08em; }
+.blink { animation: blink 1s step-end infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-/* REVEAL */
 .rv { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
 .rv.on { opacity: 1; transform: none; }
 
 @keyframes up { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
 
-/* MOBILE */
-@media(max-width:768px){
-  nav{padding:0 20px} .nav-links{display:none}
-  .wrap{padding:0 20px}
+@media(max-width: 900px){
+  nav{padding:0 24px}
+  .nav-links{display:none}
+  .wrap{padding:0 24px}
   .hero{padding:100px 0 60px}
   .hero-ghost{display:none}
   .stats{flex-direction:column;width:100%}
@@ -429,9 +519,9 @@ h2 {
   .p1-inner{grid-template-columns:1fr;gap:28px}
   .proj-grid{grid-template-columns:1fr}
   .ct{grid-template-columns:1fr}
-  .ct-l{border-right:none;border-bottom:1px solid var(--line);padding:36px 24px}
-  .ct-r{padding:36px 24px}
-  .foot{flex-direction:column;gap:6px;padding:20px;text-align:center}
+  .ct-l{border-right:none;border-bottom:1px solid var(--line);padding:36px 28px}
+  .ct-r{padding:36px 28px}
+  .foot{flex-direction:column;gap:8px;padding:20px;text-align:center}
 }
 </style>
 </head>
@@ -449,21 +539,21 @@ h2 {
   <div class="nav-pill"><div class="dot"></div>Open to work</div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="wrap">
     <div class="hero-ghost">S</div>
     <div class="eyebrow"><div class="eyebrow-bar"></div>Security Researcher · Penetration Tester</div>
     <h1>Mohamed<br>Abubakkar <span class="r">Siddik</span></h1>
     <p class="hero-lead">
-      Offensive security practitioner focused on <b>web, API, and Android exploitation</b>.
-      Finding what others miss — from business logic to critical infrastructure flaws.
+      Identified real-world vulnerabilities including <b>IDOR, authentication bypass, and 2FA race conditions</b> in live applications.<br>
+      Focused on manual exploitation and business logic flaws.
     </p>
+    <div class="hero-code">manual testing <span>→</span> automation <span>→</span> impact</div>
     <div class="stats">
       <div class="stat"><div class="stat-v"><span>P1</span> Critical</div><div class="stat-l">Bugcrowd VDP</div></div>
       <div class="stat"><div class="stat-v">VAPT</div><div class="stat-l">Tytova Technologies</div></div>
-      <div class="stat"><div class="stat-v">B.E.</div><div class="stat-l">CSE · Anna University</div></div>
-      <div class="stat"><div class="stat-v">3<span>+</span></div><div class="stat-l">Security Tools</div></div>
+      <div class="stat"><div class="stat-v">Real</div><div class="stat-l">Client Testing</div></div>
+      <div class="stat"><div class="stat-v">4<span>+</span></div><div class="stat-l">Security Projects</div></div>
     </div>
     <div class="actions">
       <a href="#contact" class="btn btn-p">Get in touch →</a>
@@ -474,115 +564,54 @@ h2 {
 
 <div class="divider"></div>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="wrap">
     <div class="sh rv"><span class="snum">01 — Skills</span><h2>Technical Arsenal</h2></div>
     <div class="skills-grid rv">
-      <div class="sk">
-        <div class="sk-icon">🎯</div>
-        <div class="sk-title">Offensive</div>
-        <ul class="sk-list">
-          <li>Web & API Testing</li>
-          <li>Android Pentesting</li>
-          <li>IDOR & Auth Bypass</li>
-          <li>2FA Race Conditions</li>
-          <li>Business Logic Flaws</li>
-          <li>XSS / SQLi</li>
-        </ul>
-      </div>
-      <div class="sk">
-        <div class="sk-icon">🔧</div>
-        <div class="sk-title">Tools</div>
-        <ul class="sk-list">
-          <li>Burp Suite</li>
-          <li>Frida / Objection</li>
-          <li>Nmap / SQLMap</li>
-          <li>Postman</li>
-          <li>Wireshark</li>
-          <li>ADB / apktool</li>
-        </ul>
-      </div>
-      <div class="sk">
-        <div class="sk-icon">🌐</div>
-        <div class="sk-title">Network</div>
-        <ul class="sk-list">
-          <li>HTTP/HTTPS</li>
-          <li>TCP/IP & DNS</li>
-          <li>Enumeration</li>
-          <li>OSINT</li>
-          <li>Shodan</li>
-        </ul>
-      </div>
-      <div class="sk">
-        <div class="sk-icon">⚡</div>
-        <div class="sk-title">Dev & Automation</div>
-        <ul class="sk-list">
-          <li>Python</li>
-          <li>Bash Scripting</li>
-          <li>GitHub</li>
-          <li>Splunk / SIEM</li>
-          <li>Report Writing</li>
-        </ul>
-      </div>
+      <div class="sk"><div class="sk-icon">🎯</div><div class="sk-title">Offensive</div><ul class="sk-list"><li>Web & API Testing</li><li>Android Pentesting</li><li>IDOR & Auth Bypass</li><li>2FA Race Conditions</li><li>Business Logic Flaws</li><li>XSS / SQLi</li></ul></div>
+      <div class="sk"><div class="sk-icon">🔧</div><div class="sk-title">Tools</div><ul class="sk-list"><li>Burp Suite</li><li>Frida / Objection</li><li>Nmap / SQLMap</li><li>Postman</li><li>Wireshark</li><li>ADB / apktool</li></ul></div>
+      <div class="sk"><div class="sk-icon">🌐</div><div class="sk-title">Network</div><ul class="sk-list"><li>HTTP/HTTPS</li><li>TCP/IP & DNS</li><li>Enumeration</li><li>OSINT</li><li>Shodan</li></ul></div>
+      <div class="sk"><div class="sk-icon">⚡</div><div class="sk-title">Dev & Automation</div><ul class="sk-list"><li>Python</li><li>Bash Scripting</li><li>GitHub</li><li>Splunk / SIEM</li><li>Report Writing</li></ul></div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- EXPERIENCE -->
 <section id="exp">
   <div class="wrap">
     <div class="sh rv"><span class="snum">02 — Experience</span><h2>Where I've Worked</h2></div>
     <div class="exp rv">
-      <div class="exp-side">
-        <div class="exp-tag">Internship</div>
-        <div class="exp-co">Tytova Technologies</div>
-        <div class="exp-pos">VAPT Intern — API & Android Security</div>
-        <div class="exp-meta">
-          <span><b>2025 — 2026</b></span>
-          <span>Tamil Nadu, India</span>
-          <span>Cert: TYTOVA-VAPT-2026-004</span>
-        </div>
-      </div>
-      <div class="exp-body">
-        <ul class="exp-ul">
-          <li>Performed end-to-end API & Android application pentesting on live client targets using Burp Suite, Frida, and Postman — delivering structured reports with CVSS scoring and PoC payloads.</li>
-          <li>Identified and escalated IDOR, authentication bypass, and 2FA race condition vulnerabilities, demonstrating critical business impact through chained exploit scenarios.</li>
-          <li>Conducted deep Android DAST/SAST testing — SSL pinning bypass, exported component abuse, deep link hijacking, and intent-based attack surface analysis.</li>
-          <li>Documented findings with actionable remediation roadmaps tailored for developer-facing remediation, reducing re-test cycles for client engineering teams.</li>
-        </ul>
-      </div>
+      <div class="exp-side"><div class="exp-tag">Internship</div><div class="exp-co">Tytova Technologies</div><div class="exp-pos">VAPT Intern — API & Android Security</div><div class="exp-meta"><span><b>2025 — 2026</b></span><span>Tamil Nadu, India</span></div></div>
+      <div class="exp-body"><ul class="exp-ul"><li>Performed end-to-end API & Android application pentesting on live client targets using Burp Suite, Frida, and Postman — delivering structured reports with CVSS scoring and PoC payloads.</li><li>Identified and escalated IDOR, authentication bypass, and 2FA race condition vulnerabilities, demonstrating critical business impact through chained exploit scenarios.</li><li>Conducted deep Android DAST/SAST testing — SSL pinning bypass, exported component abuse, deep link hijacking, and intent-based attack surface analysis.</li><li>Documented findings with actionable remediation roadmaps tailored for developer-facing remediation, reducing re-test cycles for client engineering teams.</li></ul></div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- P1 -->
 <section id="p1">
   <div class="wrap">
     <div class="sh rv"><span class="snum">03 — Case Study</span><h2>Validated P1 Finding</h2></div>
     <div class="p1 rv">
       <div class="p1-watermark">P1</div>
       <div class="p1-header">
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="p1-tag">P1 — Critical</div>
-          <div class="p1-source">Bugcrowd · VDP Program</div>
-        </div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><div class="p1-tag">P1 — Critical</div><div class="p1-source">Bugcrowd · VDP Program</div></div>
         <div class="p1-ok">Validated & Resolved</div>
       </div>
       <div class="p1-inner">
         <div>
           <div class="p1-title">Sensitive Data Exposure via Unauthenticated Endpoint</div>
           <p class="p1-desc">An unauthenticated API endpoint returned full server-side stack traces in HTTP error responses — leaking internal backend logic, file paths, framework versions, and service configuration, providing a direct reconnaissance and exploitation pathway.</p>
-          <div class="chain">
-            <div class="cn">Recon</div><div class="ca">→</div>
-            <div class="cn">Unauth Endpoint</div><div class="ca">→</div>
-            <div class="cn">Stack Trace Leak</div><div class="ca">→</div>
-            <div class="cn">Backend Exposed</div><div class="ca">→</div>
-            <div class="cn active">P1 Validated</div>
+          <div class="attack-chain">
+            <div class="chain-step">Recon</div><div class="chain-arrow">→</div>
+            <div class="chain-step">Unauth Endpoint</div><div class="chain-arrow">→</div>
+            <div class="chain-step">Stack Trace Leak</div><div class="chain-arrow">→</div>
+            <div class="chain-step">Backend Exposed</div><div class="chain-arrow">→</div>
+            <div class="chain-step active">P1 Validated</div>
+          </div>
+          <div class="p1-proof">
+            <a href="https://github.com/siddik-tk" target="_blank" class="btn btn-g" style="display:inline-flex; padding:10px 20px; font-size:11px;">📄 View Full Report →</a>
           </div>
         </div>
         <div class="facts">
@@ -599,90 +628,10 @@ h2 {
 
 <div class="divider"></div>
 
-<!-- PROJECTS -->
 <section id="proj">
   <div class="wrap">
     <div class="sh rv"><span class="snum">04 — Projects</span><h2>Things I've Built</h2></div>
     <div class="proj-grid rv">
-      <div class="pc" data-n="01">
-        <div class="pn">Smart Network Scanner</div>
-        <p class="pd">Automated network enumeration combining Nmap with intelligent service fingerprinting and structured vulnerability correlation output.</p>
-        <div class="ptags"><span class="ptag">Python</span><span class="ptag">Nmap</span><span class="ptag">Recon</span></div>
-      </div>
-      <div class="pc" data-n="02">
-        <div class="pn">Web Vulnerability Scanner</div>
-        <p class="pd">Custom scanner targeting OWASP Top 10 — XSS, SQLi, open redirects — with automated payload injection and response analysis.</p>
-        <div class="ptags"><span class="ptag">Python</span><span class="ptag">OWASP</span><span class="ptag">Automation</span></div>
-      </div>
-      <div class="pc" data-n="03">
-        <div class="pn">SmartFileGuard</div>
-        <p class="pd">File integrity monitoring with Git-backed forensic logging — detects unauthorized modifications and maintains a tamper-evident audit trail.</p>
-        <div class="ptags"><span class="ptag">Python</span><span class="ptag">Forensics</span><span class="ptag">Git</span></div>
-      </div>
-      <div class="pc" data-n="04">
-        <div class="pn">Home Security Lab</div>
-        <p class="pd">Dual-VM attack/defend environment with Splunk SIEM, malware analysis, PCAP forensics, and L1 SOC detection rule configuration.</p>
-        <div class="ptags"><span class="ptag">Splunk</span><span class="ptag">Blue Team</span><span class="ptag">SIEM</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="wrap">
-    <div class="sh rv"><span class="snum">05 — Contact</span><h2>Let's Work Together</h2></div>
-    <div class="ct rv">
-      <div class="ct-l">
-        <div class="ct-h">Targeting <span>AppSec</span><br>& <span>VAPT</span> Roles</div>
-        <p class="ct-sub">Final-year B.E. CSE student seeking entry-level AppSec and VAPT roles in Tamil Nadu — Chennai & Coimbatore preferred. Open to remote and boutique security firms.</p>
-        <a href="#" class="btn btn-p" style="display:inline-flex">Download Resume →</a>
-      </div>
-      <div class="ct-r">
-        <a href="https://linkedin.com" target="_blank" class="clink">
-          <div class="cl-icon">in</div>
-          <div class="cl-info"><div class="cl-plat">LinkedIn</div><div class="cl-label">linkedin.com/in/your-profile</div></div>
-          <div class="cl-arrow">→</div>
-        </a>
-        <a href="https://github.com" target="_blank" class="clink">
-          <div class="cl-icon">⌥</div>
-          <div class="cl-info"><div class="cl-plat">GitHub</div><div class="cl-label">github.com/your-username</div></div>
-          <div class="cl-arrow">→</div>
-        </a>
-        <a href="https://bugcrowd.com" target="_blank" class="clink">
-          <div class="cl-icon">🐛</div>
-          <div class="cl-info"><div class="cl-plat">Bugcrowd</div><div class="cl-label">bugcrowd.com/your-profile</div></div>
-          <div class="cl-arrow">→</div>
-        </a>
-        <a href="mailto:your@email.com" class="clink">
-          <div class="cl-icon">@</div>
-          <div class="cl-info"><div class="cl-plat">Email</div><div class="cl-label">your@email.com</div></div>
-          <div class="cl-arrow">→</div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="foot">
-    <div class="foot-l">© 2025 <b>Mohamed Abubakkar Siddik</b></div>
-    <div class="foot-r">Built clean. Think offensive.</div>
-  </div>
-</footer>
-
-<script>
-  const io = new IntersectionObserver(entries => {
-    entries.forEach((e,i) => {
-      if(e.isIntersecting){
-        setTimeout(()=>e.target.classList.add('on'), i*50);
-        io.unobserve(e.target);
-      }
-    });
-  }, {threshold:0.08});
-  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-</script>
-</body>
-</html>
+      <a href="https://github.com/siddik-tk" target="_blank" class="project-link"><div class="pc" data-n="01"><div class="pn">Smart Network Scanner</div><p class="pd">Automated network enumeration combining Nmap with intelligent service fingerprinting and structured vulnerability correlation output.</p><div class="ptags"><span class="ptag">Python</span><span class="ptag">Nmap</span><span class="ptag">Recon</span></div></div></a>
+      <a href="https://github.com/siddik-tk" target="_blank" class="project-link"><div class="pc" data-n="02"><div class="pn">Web Vulnerability Scanner</div><p class="pd">Custom scanner targeting OWASP Top 10 — XSS, SQLi, open redirects — with automated payload injection and response analysis.</p><div class="ptags"><span class="ptag">Python</span><span class="ptag">OWASP</span><span class="ptag">Automation</span></div></div></a>
+      <a href="https://github.com/siddik-tk" target="_blank" class="project-link"><div
