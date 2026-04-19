@@ -3,82 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Siddik | Offensive Security</title>
+<title>Siddik | VAPT</title>
 
 <style>
 body {
     margin: 0;
-    font-family: Consolas, monospace;
-    background: #020617;
-    color: #22c55e;
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
 }
 
-/* Container */
+/* container */
 .container {
     max-width: 900px;
     margin: auto;
     padding: 20px;
 }
 
-/* Terminal */
-.terminal {
-    background: #020617;
-    border: 1px solid #22c55e;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    box-shadow: 0 0 15px #22c55e33;
+/* header */
+.header {
+    text-align: center;
+    padding: 40px 0;
 }
 
-/* Typing */
-.cursor {
-    display: inline-block;
-    width: 10px;
-    background: #22c55e;
-    margin-left: 5px;
-    animation: blink 1s infinite;
+.header h1 {
+    font-size: 32px;
 }
 
-@keyframes blink {
-    50% { opacity: 0; }
+.header p {
+    color: #94a3b8;
 }
 
-/* Sections */
+/* links */
+.links a {
+    margin: 0 10px;
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+/* section */
 .section {
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .section h2 {
-    color: #22c55e;
-    border-left: 3px solid #22c55e;
+    border-left: 4px solid #38bdf8;
     padding-left: 10px;
 }
 
-/* Cards */
+/* cards */
 .card {
-    background: #020617;
-    border: 1px solid #22c55e33;
-    padding: 15px;
-    border-radius: 10px;
+    background: #1e293b;
+    padding: 18px;
+    border-radius: 12px;
     margin-top: 15px;
     transition: 0.3s;
 }
 
 .card:hover {
-    box-shadow: 0 0 10px #22c55e55;
+    transform: translateY(-4px);
+    box-shadow: 0 0 10px #38bdf833;
 }
 
-/* Links */
-a {
-    color: #22c55e;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Grid */
+/* grid */
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -90,34 +77,54 @@ a:hover {
         grid-template-columns: 1fr;
     }
 }
+
+/* subtle hacker line */
+.code {
+    font-family: monospace;
+    color: #22c55e;
+    margin-top: 10px;
+}
+
+/* button */
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    border: 1px solid #38bdf8;
+    border-radius: 6px;
+}
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-<!-- TERMINAL INTRO -->
-<div class="terminal">
-<p>> whoami</p>
-<p id="typing"></p>
+<!-- HEADER -->
+<div class="header">
+    <h1>Mohamed Abubakkar Siddik A</h1>
+    <p>VAPT Intern | Web • API • Android Security</p>
+
+    <div class="links">
+        <a href="mailto:siddik3tk@gmail.com">Email</a>
+        <a href="https://github.com/siddik-tk">GitHub</a>
+        <a href="https://linkedin.com/in/siddik-cybersecurity-8a1b96309">LinkedIn</a>
+    </div>
 </div>
 
 <!-- ABOUT -->
 <div class="section">
 <h2>About</h2>
 <div class="card">
-Offensive security enthusiast focused on real-world exploitation of web, API, and Android applications.
+Penetration tester with hands-on experience in real-world vulnerabilities including 
+<b>IDOR</b>, <b>authentication bypass</b>, <b>2FA race condition</b>, and <b>business logic flaws</b>.
 
-<br><br>
-
-Experience in:
-IDOR • Auth Bypass • 2FA Race Condition • Business Logic Flaws
-
-<br><br>
+<div class="code">> tested real APIs & mobile apps</div>
 
 ✔ VAPT Internship  
-✔ Validated P1 (Bugcrowd VDP)
+<br>
+✔ Validated P1 Bugcrowd Finding
 </div>
 </div>
 
@@ -128,42 +135,30 @@ IDOR • Auth Bypass • 2FA Race Condition • Business Logic Flaws
 <div class="grid">
 
 <div class="card">
-[ Offensive ]
-<br>
-Web / API / Android Testing
-<br>
-IDOR, Auth Bypass
-<br>
-XSS, SQLi
+<b>Offensive</b><br>
+Web, API, Android Testing<br>
+IDOR, Auth Bypass<br>
+XSS, SQL Injection
 </div>
 
 <div class="card">
-[ Tools ]
-<br>
-Burp Suite
-<br>
-Nmap, SQLMap
-<br>
+<b>Tools</b><br>
+Burp Suite<br>
+Nmap, SQLMap<br>
 Frida, Wireshark
 </div>
 
 <div class="card">
-[ Network ]
-<br>
-HTTP/HTTPS
-<br>
-TCP/IP, DNS
-<br>
+<b>Networking</b><br>
+HTTP/HTTPS<br>
+TCP/IP, DNS<br>
 Enumeration
 </div>
 
 <div class="card">
-[ Automation ]
-<br>
-Python
-<br>
-Bash
-<br>
+<b>Automation</b><br>
+Python<br>
+Bash<br>
 Scripting
 </div>
 
@@ -175,13 +170,11 @@ Scripting
 <h2>Experience</h2>
 
 <div class="card">
-VAPT Intern — Tytova Technologies
+<b>VAPT Intern — Tytova Technologies</b><br><br>
 
-<br><br>
-
-• API & Android Pentesting  
+• API & Android penetration testing  
 <br>
-• IDOR, Auth flaws, 2FA bypass  
+• Found IDOR, auth flaws, 2FA bypass  
 <br>
 • Business logic testing  
 <br>
@@ -195,16 +188,15 @@ VAPT Intern — Tytova Technologies
 <h2>Case Study</h2>
 
 <div class="card">
-[ P1 ] Sensitive Data Exposure
+<b>P1 — Sensitive Data Exposure</b><br><br>
+
+Unauthenticated endpoint exposed stack traces revealing backend logic.
 
 <br><br>
 
-Unauthenticated endpoint leaked stack traces revealing internal backend logic.
-
-<br><br>
-
-Impact → Info disclosure → exploitation path  
-Fix → Proper error handling  
+<b>Impact:</b> Information disclosure → attack path  
+<br>
+<b>Fix:</b> Proper error handling
 </div>
 
 </div>
@@ -214,49 +206,30 @@ Fix → Proper error handling
 <h2>Projects</h2>
 
 <div class="card">
-Smart Network Scanner  
-<br>
-<a href="https://github.com/siddik-tk">view →</a>
+Smart Network Scanner<br>
+<a class="btn" href="https://github.com/siddik-tk">View →</a>
 </div>
 
 <div class="card">
-Web Vulnerability Scanner  
-<br>
-<a href="https://github.com/siddik-tk">view →</a>
+Web Vulnerability Scanner<br>
+<a class="btn" href="https://github.com/siddik-tk">View →</a>
 </div>
 
 </div>
 
-<!-- CONTACT -->
+<!-- FINDINGS -->
 <div class="section">
-<h2>Contact</h2>
+<h2>Real-World Findings</h2>
 
 <div class="card">
-📧 siddik3tk@gmail.com  
-<br>
-🔗 <a href="https://github.com/siddik-tk">GitHub</a>  
-<br>
-🔗 <a href="https://linkedin.com/in/siddik-cybersecurity-8a1b96309">LinkedIn</a>
+<a class="btn" href="https://github.com/siddik-tk/Cybersecurity-Portfolio">
+View Reports →
+</a>
 </div>
 
 </div>
 
 </div>
-
-<script>
-const text = "Mohamed Abubakkar Siddik — VAPT | Offensive Security";
-let i = 0;
-
-function type() {
-    if (i < text.length) {
-        document.getElementById("typing").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(type, 40);
-    }
-}
-
-type();
-</script>
 
 </body>
 </html>
